@@ -1,0 +1,15 @@
+package medyburke.wonderworld;
+
+import medyburke.wonderworld.init.WonderWorldItems;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+
+public class WWTab extends CreativeTabs {
+    public WWTab(String label) {
+        super(label);
+    }
+
+    public Item getTabIconItem() {
+        return WonderWorldItems.test;
+    }
+}
