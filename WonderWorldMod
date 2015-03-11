@@ -1,0 +1,46 @@
+package medyburke.wonderworld;
+
+import medyburke.wonderworld.WWTab;
+import medyburke.wonderworld.init.WonderWorldBlocks;
+import medyburke.wonderworld.init.WonderWorldItems;
+import medyburke.wonderworld.proxy.CommonProxy;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+@Mod(
+    modid = "wwm",
+    name = "Wonder World Mod",
+    version = "1.0"
+)
+public class WonderWorldMod {
+    @SidedProxy(
+        clientSide = "medyburke.wonderworld.proxy.ClientProxy",
+        serverSide = "medyburke.wonderworld.proxy.CommonProxy"
+    )
+    public static CommonProxy proxy;
+    public static final WWTab tabWW = new WWTab("tabWW");
+
+    public WonderWorldMod() {
+    }
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        WonderWorldBlocks.init();
+        WonderWorldBlocks.register();
+        WonderWorldItems.init();
+        WonderWorldItems.register();
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        proxy.registerRenders();
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+    }
+}
